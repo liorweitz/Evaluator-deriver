@@ -16,6 +16,8 @@ public class ExpressionDeterminerImpl implements ExpressionDeterminer {
                 return new Divide();
             case "*":
                 return new Multiply();
+            case "^":
+                return new Power();
         }
         //Function determiner
 

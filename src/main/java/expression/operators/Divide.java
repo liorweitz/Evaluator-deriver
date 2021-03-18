@@ -8,4 +8,19 @@ public class Divide implements Operator{
         }
         return op1/op2;
     }
+
+    @Override
+    public boolean isLeftAssociative() {
+        return true;
+    }
+
+    @Override
+    public boolean isBothering() {
+        return true;
+    }
+
+    @Override
+    public String toString(){
+        return "/";
+    }
 }

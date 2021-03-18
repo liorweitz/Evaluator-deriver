@@ -1,13 +1,17 @@
 import expression.Expression;
 import expression.operators.Operator;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
 public class FixConverterImpl implements FixConverter{
-    private comparator
+    private Comparator comparator;
 
+    public FixConverterImpl(Comparator comp){
+        comparator=comp;
+    }
     @Override
     public Queue<Expression> makePostFix(Queue<Expression> inFix) { //makePostFix -> inToFix
         Queue<Expression> postFix=new LinkedList<>();
@@ -17,12 +21,17 @@ public class FixConverterImpl implements FixConverter{
                 postFix.add(exp);
             }
             else{
-                while(!operators.isEmpty() && (comparator.compare(operators.peek(), exp)>0 |
-                        (comparator.compare(operators.peek(), exp)==0 & isLeftAssociative(exp)))){
+                while(!operators.isEmpty() && (comparator.compare(operators.peek().toString(), exp.toString())>0 |
+                        (comparator.compare(operators.peek().toString(), exp.toString())==0 & ((Operator)(exp)).isLeftAssociative()))){
                     postFix.add(operators.pop());
                 }
+                operators.add(exp);
             }
         }
+        while (!operators.isEmpty()){
+            postFix.add(operators.pop());
+        }
+        return postFix;
     }
 
     @Override
