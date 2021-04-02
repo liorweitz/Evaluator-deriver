@@ -1,15 +1,17 @@
 public class Run {
     /**
-     * The input must have the following rule: between expression there must be space.
-     * every expression is without spaces and the functions are with parantheses and without
-     * multipication operators. for example: 3x^2 + 6 + 3sin(2x^2) In addition it is not permitted
-     * to add multiplication or division by const to complete function expression (no spaces).
-     * for example: the next expression will not derive well: 3x^2 + 6 + 3sin(2x^2) / 3.
+     * Input Assumptions:
+     * 1) Between expression there must be space.
+     * 2) complete expression have no spaces between symbols. like so: 3x^2, sin(3x).
+     * 3) in a complete expression there must not be const of the type of 2/3 or 2*3. only const of type double.
+     * 4) The inner function in a composition must be inside parentheses.
+     * 5) Similarily to the 3rd assumption, it is not allowed to divide or multiply by a complete expression of
+     * const, like so: 3x^2 / 3.
      * @param args
-     * @throws Exception
+     * @throws Exception in case of division by zero.
      */
     public static void main(String[] args) throws Exception {
-        String s="2x^2 / 3";
+        String s="3x^2 + sin(3x^20)^20";
         ExpressionHolder exp=new ExpressionHolder(s, new PrecComparator(), new ExpressionDeterminerImpl(), new EvaluatorImpl(), new DeriverImpl());
         exp.initialize();
 

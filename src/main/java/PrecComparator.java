@@ -3,6 +3,10 @@ import expression.operators.*;
 
 import java.util.HashMap;
 
+/**
+ * This comparator implementation compares between different levels of precedence between operators.
+ */
+
 public class PrecComparator implements java.util.Comparator<String> {
 
     private HashMap<String, Integer> precMap; ;
